@@ -1,0 +1,375 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    scroll-behavior: smooth;
+    font-family: "Poppins", sans-serif;
+}
+
+/**************************DARK Mode**************************************************/
+:root {
+    --bg-color: #111111;
+    --second-bg-color: #2f2f2f;
+    --text-color: #f6f6f6;
+    --main-color: #ffcb74;
+    --error: #ff0000;
+    --success: #00ff00;
+    --alt-color: #2272ff;
+}
+
+/**************************DARK Mode**************************************************/
+
+/**************************LIGHT Mode*************************************************/
+.lightmode {
+    --bg-color: #f7f1ea;
+    --second-bg-color: #ffffff;
+    --text-color: #000000;
+    --main-color: #104f8f;
+}
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-color);
+    color: var(--text-color);
+}
+.back-icon {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 24px;
+    color: var(--alt-color);
+    cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.back-icon i {
+    font-size: 28px;
+    transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.back-icon:hover i {
+    transform: scale(1.1);
+    color: var(--text-color);
+}
+@keyframes wave {
+    0% {
+        transform: rotate(0deg);
+    }
+    20% {
+        transform: rotate(-10deg);
+    }
+    40% {
+        transform: rotate(10deg);
+    }
+    60% {
+        transform: rotate(-10deg);
+    }
+    80% {
+        transform: rotate(10deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+.waving-hand {
+    display: inline-block;
+    animation: wave 1.5s ease-in-out infinite;
+    transform-origin: center bottom;
+}
+
+.wrapper {
+    position: relative;
+    max-width: 450px;
+    width: 100%;
+    background: var(--bg-color);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease-in-out;
+}
+
+.wrapper:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.wrapper h2 {
+    position: relative;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+.wrapper form .input-box {
+    height: 52px;
+    margin: 18px 0;
+}
+form .input-box {
+    min-height: 52px;
+    margin: 18px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+form .input-box input {
+    height: 100%;
+    width: 100%;
+    outline: none;
+    padding: 0 15px;
+    font-size: 17px;
+    font-weight: 400;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    border: 1px solid var(--second-bg-color);
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+.input-box input:focus,
+.input-box input:valid {
+    border-color: var(--alt-color);
+}
+form .policy {
+    display: flex;
+    align-items: center;
+}
+form h3 {
+    color: var(--alt-text);
+    font-size: 14px;
+    font-weight: 500;
+    margin-left: 10px;
+}
+.input-box.button input {
+    color: var(--text-color);
+    letter-spacing: 1px;
+    border: 2px solid var(--alt-color);
+    background: var(--bg-color);
+    cursor: pointer;
+}
+.input-box.button input:hover {
+    background: var(--second-bg-color);
+}
+
+form .text h3 {
+    color: var(--text-color);
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+}
+form .text h3 a {
+    color: var(--alt-color);
+    text-decoration: none;
+}
+form .text h3 a:hover {
+    text-decoration: underline;
+}
+.text h4 {
+    color: var(--alt-text);
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+}
+.text h4 a {
+    color: var(--alt-color);
+    text-decoration: none;
+}
+.text h4 a:hover{
+    text-decoration: underline;
+}
+
+.input-box select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid var(--alt-text);
+    border-radius: 5px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+.input-box select:focus {
+    outline: none;
+    border-color: var(--alt-color);
+}
+
+.forgotpass {
+    color: var(--alt-color);
+    text-decoration: none;
+    text-align: center;
+}
+
+.forgotpass:hover {
+    text-decoration: underline;
+}
+.policy {
+    display: flex;
+    align-items: center;
+}
+.policy a {
+    color: var(--alt-color);
+    text-decoration: none;
+}
+.policy input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--alt-color);
+    cursor: pointer;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+.password-container .error {
+    position: static;
+    margin-top: 5px;
+    width: 100%;
+}
+.error {
+    color: var(--error);
+    font-size: 0.85em;
+    background: rgba(255, 0, 0, 0.1);
+    border-left: 4px solid var(--error);
+    padding: 6px 10px;
+    border-radius: 5px;
+    margin-top: 5px;
+    display: block;
+    font-weight: 500;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-3px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.signup-button {
+    background-color: var(--bg-color);
+    color: var(--alt-color);
+    text-decoration: none;
+}
+
+.confirm {
+    margin-top: 10px;
+}
+
+.advice {
+    font-size: 8px;
+    color: var(--alt-text);
+    padding: 5px;
+}
+.google-login {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.google-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 20px;
+    border: 1px solid var(--alt-color);
+    border-radius: 5px;
+    background-color: var(--second-bg-color);
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.google-button img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.google-button:hover {
+    background-color: var(--alt-color);
+    color: var(--second-bg-color);
+    border-color: var(--second-bg-color);
+}
+
+.password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-container input {
+    width: 100%;
+    padding: 12px 40px 12px 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+.password-container i {
+    position: absolute;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #666;
+    transition: color 0.3s ease-in-out;
+}
+
+.password-container i:hover {
+    color: #333;
+}
+
+.gmail-link {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    justify-content: center;
+    gap: 8px;
+    background: var(--bg-color);
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    text-decoration: none;
+    margin-bottom: 10px;
+}
+
+.gmail-link a {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    color: var(--text-color, #333);
+    font-weight: 500;
+}
+
+.gmail-image {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+}
+
+.gmail-link i {
+    font-size: 20px;
+    color: var(--alt-color);
+    transition: transform 0.2s ease-in-out;
+}
+
+.gmail-link:hover {
+    transform: translateY(-2px);
+}
+
+.gmail-link:hover i {
+    transform: scale(1.1);
+}

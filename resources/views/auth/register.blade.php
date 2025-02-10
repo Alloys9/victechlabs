@@ -1,60 +1,80 @@
-<x-guest-layout>
-    <x-authentication-card>
-        <x-slot name="logo">
-            <x-authentication-card-logo />
-        </x-slot>
+<!DOCTYPE html>
+<html lang="en">
 
-        <x-validation-errors class="mb-4" />
+<head>
+    <title>Register | {{ config('app.name') }}</title>
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+    @include('defaults.head')
+</head>
 
+<body>
+    <a href="javascript:history.back()" class="back-icon">
+        <i class='bx bx-chevron-left-circle'></i>
+    </a>
+    <div class="wrapper">
+
+
+        <h2>Create an Account</h2>
         <form method="POST" action="{{ route('register') }}">
             @csrf
 
-            <div>
-                <x-label for="name" value="{{ __('Name') }}" />
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+            <div class="input-box">
+                <input type="text" name="name" placeholder="Enter your name" value="{{ old('name') }}" required>
             </div>
 
-            <div class="mt-4">
-                <x-label for="email" value="{{ __('Email') }}" />
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
+            <div class="input-box">
+                <input type="email" name="email" placeholder="Enter your email" value="{{ old('email') }}"
+                    required>
+                @error('email')
+                    <span class="error">{{ $message }}</span>
+                @enderror
             </div>
 
-            <div class="mt-4">
-                <x-label for="password" value="{{ __('Password') }}" />
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
+            <div class="input-box password-container">
+                <input type="password" id="password" name="password" placeholder="Create password" required>
+                <i class='bx bx-hide' id="toggle-password"></i>
+
+                @error('password')
+                    <span class="error">{{ $message }}</span>
+                @enderror
             </div>
 
-            <div class="mt-4">
-                <x-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
-                <x-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
+            <div class="input-box password-container">
+                <input type="password" id="password_confirmation" name="password_confirmation"
+                    placeholder="Confirm password" required>
+                <i class='bx bx-hide' id="toggle-password"></i>
+                @error('password_confirmation')
+                    <span class="error">{{ $message }}</span>
+                @enderror
             </div>
 
-            @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
-                <div class="mt-4">
-                    <x-label for="terms">
-                        <div class="flex items-center">
-                            <x-checkbox name="terms" id="terms" required />
+            <input type="hidden" name="role" value="user">
 
-                            <div class="ms-2">
-                                {!! __('I agree to the :terms_of_service and :privacy_policy', [
-                                        'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">'.__('Terms of Service').'</a>',
-                                        'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">'.__('Privacy Policy').'</a>',
-                                ]) !!}
-                            </div>
-                        </div>
-                    </x-label>
-                </div>
-            @endif
+            <div class="policy">
+                <input type="checkbox" name="terms" id="terms" required>
+                <label for="terms">I accept the <a href="{{ url('terms') }}" target="_blank">Terms & Conditions</a>
+                    and <a href="{{ url('policy') }}" target="_blank">Privacy Policy</a></label>
+            </div>
 
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a>
+            <div class="input-box button">
+                <input type="submit" value="Register Now">
+            </div>
 
-                <x-button class="ms-4">
-                    {{ __('Register') }}
-                </x-button>
+            <div class="text">
+                <h3>Already have an account? <a href="{{ route('login') }}">Login now</a></h3>
             </div>
         </form>
-    </x-authentication-card>
-</x-guest-layout>
+
+
+        <div class="google-login">
+            <a href="{{ url('google') }}" class="google-button">
+                <img src="{{ asset('images/google.png') }}" alt="Google Icon">
+                Continue with Google
+            </a>
+        </div>
+    </div>
+
+    <script src="{{ asset('js/auth-forms.js') }}"></script>
+</body>
+
+</html>

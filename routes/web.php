@@ -1,10 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'redirect']);
+
+Route::get('google', [GoogleController::class, "redirectgoogle"]);
+Route::get('auth/google/callback', [GoogleController::class, "googlecallback"]);
+
 
 Route::middleware([
     'auth:sanctum',

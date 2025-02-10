@@ -1,48 +1,65 @@
-<x-guest-layout>
-    <x-authentication-card>
-        <x-slot name="logo">
-            <x-authentication-card-logo />
-        </x-slot>
+<!DOCTYPE html>
+<html lang="en">
 
-        <x-validation-errors class="mb-4" />
+<head>
+    <title>Login | {{ config('app.name') }}</title>
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+    @include('defaults.head')
+</head>
 
-        @session('status')
-            <div class="mb-4 font-medium text-sm text-green-600">
-                {{ $value }}
-            </div>
-        @endsession
+<body>
+    <a href="javascript:history.back()" class="back-icon">
+        <i class='bx bx-chevron-left-circle'></i>
+    </a>
+    <div class="wrapper">
+
+
+        <h2>Welcome Back <i class='bx bxs-hand waving-hand'></i></h2>
 
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
-            <div>
-                <x-label for="email" value="{{ __('Email') }}" />
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+            <div class="input-box">
+                <input type="email" name="email" placeholder="Enter your email" value="{{ old('email') }}" required
+                    autocomplete="username">
+                @error('email')
+                    <span class="error">{{ $message }}</span>
+                @enderror
             </div>
 
-            <div class="mt-4">
-                <x-label for="password" value="{{ __('Password') }}" />
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
+            <div class="input-box password-container">
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                <i class='bx bx-hide' id="toggle-password"></i>
+                @error('password')
+                    <span class="error">{{ $message }}</span>
+                @enderror
             </div>
 
-            <div class="block mt-4">
-                <label for="remember_me" class="flex items-center">
-                    <x-checkbox id="remember_me" name="remember" />
-                    <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
+            <div class="policy">
+                <input type="checkbox" name="remember" id="remember">
+                <label for="remember">Remember me</label>
             </div>
 
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
+            <div class="input-box button">
+                <input type="submit" value="Login">
+            </div>
 
-                <x-button class="ms-4">
-                    {{ __('Log in') }}
-                </x-button>
+            <div class="text">
+                <h3>Don't have an account? <a href="{{ route('register') }}">Register now</a></h3>
+                <h3><a href="{{ route('password.request') }}" class="forgotpass">Forgot Password?</a></h3>
             </div>
         </form>
-    </x-authentication-card>
-</x-guest-layout>
+
+
+        <div class="google-login">
+            <a href="{{ url('google') }}" class="google-button">
+                <img src="{{ asset('images/google.png') }}" alt="Google Icon">
+                Continue with Google
+            </a>
+        </div>
+
+    </div>
+    <script src="{{ asset('js/auth-forms.js') }}"></script>
+</body>
+
+</html>
