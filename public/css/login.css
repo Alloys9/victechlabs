@@ -1,34 +1,4 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    text-decoration: none;
-    border: none;
-    outline: none;
-    scroll-behavior: smooth;
-    font-family: "Poppins", sans-serif;
-}
 
-/**************************DARK Mode**************************************************/
-:root {
-    --bg-color: #111111;
-    --second-bg-color: #2f2f2f;
-    --text-color: #f6f6f6;
-    --main-color: #ffcb74;
-    --error: #ff0000;
-    --success: #00ff00;
-    --alt-color: #2272ff;
-}
-
-/**************************DARK Mode**************************************************/
-
-/**************************LIGHT Mode*************************************************/
-.lightmode {
-    --bg-color: #f7f1ea;
-    --second-bg-color: #ffffff;
-    --text-color: #000000;
-    --main-color: #104f8f;
-}
 body {
     min-height: 100vh;
     display: flex;
@@ -42,7 +12,7 @@ body {
     top: 10px;
     left: 10px;
     font-size: 24px;
-    color: var(--alt-color);
+    color: var(--main-color);
     cursor: pointer;
     text-decoration: none;
     display: flex;
@@ -152,7 +122,7 @@ form h3 {
 .input-box.button input {
     color: var(--text-color);
     letter-spacing: 1px;
-    border: 2px solid var(--alt-color);
+    border: 2px solid var(--main-color);
     background: var(--bg-color);
     cursor: pointer;
 }
@@ -281,7 +251,7 @@ form .text h3 a:hover {
     display: inline-flex;
     align-items: center;
     padding: 10px 20px;
-    border: 1px solid var(--alt-color);
+    border: 1px solid var(--main-color);
     border-radius: 5px;
     background-color: var(--second-bg-color);
     color: var(--text-color);

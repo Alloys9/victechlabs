@@ -1,23 +1,33 @@
 document.addEventListener("DOMContentLoaded", function() {
     let popup = document.getElementById("googlePopup");
-    let closeBtn = document.getElementById("closePopup");
 
-    // Show popup if not closed before
-    if (!sessionStorage.getItem("googlePopupClosed")) {
-        setTimeout(() => {
-            popup.classList.add("show");
-        }, 500);
+    let googleAuthUrl = popup ? popup.getAttribute("data-url") : null;
+
+    if (!popup || !googleAuthUrl) return;
+
+    if (sessionStorage.getItem("googlePopupClosed")) {
+        popup.parentNode.removeChild(popup);
+        return;
     }
 
-    // Close popup and set session storage
+    let closeBtn = document.getElementById("closePopup");
+
+    setTimeout(() => {
+        popup.classList.add("show");
+    }, 500);
+
     closeBtn.addEventListener("click", function(event) {
         event.stopPropagation();
         popup.classList.remove("show");
+
+        setTimeout(() => {
+            popup.parentNode.removeChild(popup);
+        }, 500);
+
         sessionStorage.setItem("googlePopupClosed", "true");
     });
 
-    // Redirect to Google login on click
     popup.addEventListener("click", function() {
-        window.location.href = "{{ url('google') }}";
+        window.location.replace(googleAuthUrl);
     });
 });

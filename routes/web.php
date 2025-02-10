@@ -2,11 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Auth\GAuthController;
 
 Route::get('/', [HomeController::class, 'redirect']);
+Route::get('/logout', [HomeController::class, 'logout']);
 
-Route::get('google', [GoogleController::class, "redirectgoogle"]);
-Route::get('auth/google/callback', [GoogleController::class, "googlecallback"]);
+Route::get('google', [GAuthController::class, "redirectgoogle"]);
+Route::get('auth/google/callback', [GAuthController::class, "googlecallback"]);
+
+
 
 
 Route::middleware([
